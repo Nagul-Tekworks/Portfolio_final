@@ -302,11 +302,11 @@ export default function Portfolio() {
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2">
                     <Badge variant="outline">Full-Stack Java</Badge>
-                    <span className="text-sm text-slate-600">Spring Boot, React.js</span>
+                    <span className="text-sm text-slate-600">Core Java, Spring, Spring Boot, REST API, Spring security, Micro Services, React, PostgreSQL, Supabase</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline">Data Science</Badge>
-                    <span className="text-sm text-slate-600">Python, ML, NLP</span>
+                    <span className="text-sm text-slate-600">Python, Data Analysis, ML, NLP, GenAI</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline">Big Data</Badge>
