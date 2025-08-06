@@ -249,7 +249,7 @@ export default function Portfolio() {
                 <p className="text-lg leading-relaxed text-slate-700">
                   Results-driven Project Manager and Full Stack Developer with 12+ years of experience in software development, 
                   team leadership, and technical training. Skilled in Java, Python, and Big Data, delivering scalable solutions 
-                  and mentoring teams to achieve business goals efficiently.
+                  and mentoring teams to achieve business goals efficiently. Passionate about solving real-world problems and equipping developers through innovative learning paths.
                 </p>
               </CardContent>
             </Card>
