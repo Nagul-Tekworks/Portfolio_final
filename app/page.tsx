@@ -204,7 +204,7 @@ export default function Portfolio() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               <div className="text-center">
-                <div className="text-3xl font-bold">1000+</div>
+                <div className="text-3xl font-bold">2000+</div>
                 <div className="text-blue-200">Graduates Trained</div>
               </div>
               <div className="text-center">
@@ -263,23 +263,33 @@ export default function Portfolio() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">Team Leadership</Badge>
-                    <span className="text-sm text-slate-600">Development & QA Teams</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">Technical Training</Badge>
-                    <span className="text-sm text-slate-600">1000+ Graduates</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">Mentoring</Badge>
-                    <span className="text-sm text-slate-600">Train the Trainer Programs</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">Workshops</Badge>
-                    <span className="text-sm text-slate-600">College Programs</span>
-                  </div>
-                </CardContent>
+  <div className="flex items-center gap-2">
+    <Badge variant="secondary">Technical Leadership</Badge>
+    <span className="text-sm text-slate-600">
+      Led Full-Stack, QA, BA & Mentorship Teams
+    </span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="secondary">Product Development</Badge>
+    <span className="text-sm text-slate-600">
+      Managed End-to-End Software Development Lifecycle
+    </span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="secondary">Training & Mentorship</Badge>
+    <span className="text-sm text-slate-600">
+      2000+ Learners | 250+ Sessions | Train-the-Trainer Programs
+    </span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="secondary">Workshops & Events</Badge>
+    <span className="text-sm text-slate-600">
+      Corporate Workshops, College Bootcamps & Hackathons
+    </span>
+  </div>
+</CardContent>
+
+
               </Card>
 
               <Card>
