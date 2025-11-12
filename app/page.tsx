@@ -1,736 +1,561 @@
 'use client'
 
-import { useState } from 'react'
+import Image from 'next/image'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Mail, Phone, Linkedin, Github, Award, Users, Code, GraduationCap, Briefcase, Star, Calendar, MapPin, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react'
+import {
+  Award,
+  ArrowUpRight,
+  Github,
+  GraduationCap,
+  Layers,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Users,
+} from 'lucide-react'
 
-export default function Portfolio() {
-  const [expandedProject, setExpandedProject] = useState<string | null>(null)
+const stats = [
+  { label: 'Graduates Trained', value: '2000+', caption: 'Across universities & corporate cohorts' },
+  { label: 'Years in Tech', value: '12+', caption: 'Engineering, mentoring & delivery leadership' },
+  { label: 'Programs Designed', value: '250+', caption: 'Hands-on bootcamps and industry pathways' },
+  { label: 'Platforms Shipped', value: '10+', caption: 'Web, mobile & data products in production' },
+]
 
-  const toggleProject = (projectId: string) => {
-    setExpandedProject(expandedProject === projectId ? null : projectId)
-  }
+const differentiators = [
+  {
+    title: 'Strategic Delivery',
+    description:
+      'Leads cross-functional teams from concept to launch, pairing disciplined execution with pragmatic innovation.',
+    icon: Rocket,
+  },
+  {
+    title: 'Learning at Scale',
+    description:
+      'Designs enterprise academies and college programs that translate emerging tech into measurable talent outcomes.',
+    icon: Users,
+  },
+  {
+    title: 'Productised Engineering',
+    description:
+      'Builds resilient, secure platforms across web, mobile and data ecosystems with tight feedback loops.',
+    icon: Layers,
+  },
+]
 
-  const skills = {
-    java: [
-      'Core Java', 'Spring Boot', 'Spring MVC', 'Spring Security', 'Hibernate',
-      'REST APIs', 'Microservices', 'Maven', 'JUnit', 'Mockito'
+const capabilityMatrix = [
+  {
+    title: 'Full-Stack Engineering',
+    focus: 'Java | Spring | Microservices | React | Cloud-native delivery',
+    items: [
+      'Core Java',
+      'Spring Boot',
+      'Spring Security',
+      'Hibernate',
+      'REST APIs',
+      'Microservices',
+      'React.js',
+      'PostgreSQL',
+      'Supabase',
+      'Docker',
     ],
-    python: [
-      'Python Programming', 'Machine Learning', 'Data Science', 'Pandas', 'NumPy',
-      'Scikit-Learn', 'NLP', 'Streamlit', 'Data Visualization'
-    ],
-    frontend: [
-      'React.js', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap',
-      'Responsive Design', 'React Native', 'Angular'
-    ],
-    bigdata: [
-      'Hadoop', 'Hive', 'Pig', 'Sqoop', 'Spark', 'MapReduce',
-      'HBase', 'Shell Scripting', 'Oozie'
-    ],
-    databases: [
-      'PostgreSQL', 'MySQL', 'Oracle', 'MongoDB', 'SQLite',
-      'Database Design', 'Query Optimization'
-    ],
-    tools: [
-      'Git', 'Docker', 'IntelliJ IDEA', 'VS Code', 'Postman',
-      'Swagger', 'CI/CD', 'Maven'
-    ]
-  }
+  },
+  {
+    title: 'Data & Intelligence',
+    focus: 'Analytics pipelines | ML Ops | GenAI enablement',
+    items: ['Python', 'Scikit-Learn', 'Pandas', 'NumPy', 'Data Science', 'Machine Learning', 'NLP', 'GenAI', 'Streamlit'],
+  },
+  {
+    title: 'Big Data Fabric',
+    focus: 'High-volume data processing & orchestration',
+    items: ['Hadoop', 'Spark', 'Hive', 'Pig', 'Sqoop', 'MapReduce', 'HBase', 'Oozie', 'Flume'],
+  },
+  {
+    title: 'Experience Engineering',
+    focus: 'Responsive UI | Design systems | Accessibility-first',
+    items: ['React Native', 'Angular', 'HTML5', 'CSS3', 'Bootstrap', 'UI Architecture', 'Storytelling Dashboards'],
+  },
+  {
+    title: 'Platforms & Tooling',
+    focus: 'DevOps | Quality | Collaboration',
+    items: ['Git', 'CI/CD', 'Postman', 'Swagger', 'IntelliJ IDEA', 'VS Code', 'Maven', 'JUnit', 'Mockito'],
+  },
+  {
+    title: 'Data Stores & Governance',
+    focus: 'Relational & document databases with strong observability',
+    items: ['PostgreSQL', 'MySQL', 'Oracle', 'MongoDB', 'SQLite', 'Query Optimization', 'Database Design'],
+  },
+]
 
   const projects = [
     {
       id: 'bitlabs-web',
-      title: 'bitLabs Web Application',
+    title: 'bitLabs Talent Acceleration Platform',
       role: 'Project Lead',
-      tech: 'React.js, Spring Boot, Spring Security, PostgreSQL',
-      description: 'Job portal offering smart job recommendations, application tracking, recruiter dashboards, and Moodle integration.',
+    tech: 'React, Spring Boot, Spring Security, PostgreSQL',
       url: 'https://www.bitlabs.in/jobs',
+    description:
+      'A unified hiring and upskilling cloud for job-seekers, recruiters and academic partners with role-based experiences.',
       highlights: [
-        'Role-based authentication system',
-        'Smart job recommendation engine',
-        'Integrated MCQ testing platform',
-        'Moodle LMS integration',
-        'Real-time application tracking'
-      ]
+      'Microservice architecture with SSO and multi-tenancy',
+      'Smart job recommendation engine driven by learner telemetry',
+      'Integrated MCQ testing, proctoring and recruiter dashboards',
+      'Moodle LMS bridge delivering curriculum continuity',
+    ],
     },
     {
       id: 'bitlabs-mobile',
-      title: 'bitLabs Mobile App',
+    title: 'bitLabs Mobile Companion',
       role: 'Project Manager & Technical Architect',
       tech: 'React Native, Supabase, Edge Functions, Docker',
-      description: 'Mobile version of bitLabs platform for Android & iOS with job discovery and progress tracking.',
+    description:
+      'End-to-end mobile app for progress tracking, job alerts and personalised learning on Android & iOS.',
       highlights: [
-        'Cross-platform mobile development',
-        'Dockerized API deployment',
-        'Real-time data synchronization',
-        'Published on Play Store & App Store',
-        'PostgreSQL backend with Edge Functions'
-      ]
+      'Realtime sync across devices with Supabase and edge functions',
+      'Dockerised deployment pipelines with staged rollouts',
+      'Delivered to both Play Store and App Store with shared codebase',
+      'Usage analytics powering in-app nudges and coaching moments',
+    ],
     },
     {
       id: 'school-management',
-      title: 'School Management System',
+    title: 'Institution Management Suite',
       role: 'Lead Developer',
       tech: 'Java, Servlet, JSP, MySQL',
-      description: 'Comprehensive software to manage admissions, certificates, fee submissions, and department coordination.',
+    description:
+      'Comprehensive campus operations platform covering admissions, finance, certification, timetables and compliance.',
       highlights: [
-        'Student admission management',
-        'Certificate generation system',
-        'Fee payment tracking',
-        'Department coordination tools',
-        'MVC architecture implementation'
-      ]
+      'Modular MVC architecture with secure departmental workflows',
+      'Automated certificate generation and audit-friendly reporting',
+      'Payment integration with full ledger reconciliation',
+    ],
     },
     {
       id: 'hadoop-analysis',
-      title: 'Employee Data Analysis Using Hadoop',
+    title: 'Enterprise Workforce Intelligence',
       role: 'Lead Analyst & Developer',
-      tech: 'MapReduce, Pig, Hive, Flume, HBase',
-      description: 'Big data pipeline for large-scale employee datasets with advanced analytics and insights.',
+    tech: 'Hadoop, MapReduce, Pig, Hive, Flume, HBase',
+    description:
+      'Big data analytics pipeline ingesting multi-year employee data to unlock leadership, retention and compensation insights.',
       highlights: [
-        'Large-scale data processing',
-        'ETL pipeline development',
-        'Advanced analytics with Hive/Pig',
-        'Real-time data ingestion with Flume',
-        'Scalable data storage with HBase'
-      ]
-    }
+      'Near real-time ingestion with Flume feeding HBase storage',
+      'Reusable Hive models driving advanced analytics packs',
+      'ETL automations reducing manual reporting by 60%',
+    ],
+  },
   ]
 
   const experience = [
     {
       company: 'Tekworks',
-      role: 'Technical Lead | Learning and Development Manager & Project Manager',
+    role: 'Technical Lead | L&D Manager | Project Manager',
       period: 'Mar 2021 – Present',
       achievements: [
-        'Managed real-time projects in Full-Stack Java, Mobile App Development, and Data Science',
-        'Designed and delivered training programs for 1,000+ graduates',
-        'Led development of bitLabs Web and Mobile applications',
-        'Conducted placement drives and technical interviews',
-        'Delivered workshops at 5+ engineering colleges'
-      ]
+      'Scaled full-stack, QA and data science squads delivering multiple concurrent products.',
+      'Architected and launched bitLabs web and mobile ecosystems serving thousands of learners.',
+      'Designed corporate and campus programs graduating 1,000+ engineers every year.',
+      'Ran placement drives, talent assessments and technical interviews across partner institutions.',
+    ],
     },
     {
       company: 'NIIT Ltd',
       role: 'Senior Trainer & Software Developer',
       period: 'Sep 2016 – Nov 2020',
       achievements: [
-        'Delivered training sessions across Java Full Stack, Python, and Data Structures',
-        'Mentored over 1,500+ learners in career transitions',
-        'Conducted technical workshops on Big Data Technologies',
-        'Designed curriculum and training materials',
-        'Guided final-year students in capstone projects'
-      ]
+      'Delivered immersive training across Java full stack, Python and data structures for 1,500+ learners.',
+      'Launched big data workshops, mentoring capstone teams from discovery to defence.',
+      'Shaped national curriculum blueprints and reusable lab assets for NIIT academies.',
+    ],
     },
     {
       company: 'U-Tech Software Solutions Pvt Ltd',
       role: 'Java J2EE Developer',
       period: 'Aug 2015 – Feb 2016',
       achievements: [
-        'Developed JSPs and Servlets with validations',
-        'Contributed to frontend development using JSTL'
-      ]
-    }
+      'Built secure JSP and Servlet modules with complex validations and data flows.',
+      'Partnered with UI teams to uplift presentation layer using JSTL frameworks.',
+    ],
+  },
   ]
 
   const trainingPrograms = [
     {
-      institution: 'CVR College - Center of Excellence',
-      program: 'Python + ML Program',
+    institution: 'CVR College – Centre of Excellence',
+    program: 'Python + Machine Learning Immersive',
       duration: '120 hours',
-      students: '90+ students',
-      year: '2024-25'
+    students: '90+ learners',
+    year: '2024 – 2025',
     },
     {
-      institution: 'CVR College - Center of Excellence',
-      program: 'DL + NLP + GenAI Program',
+    institution: 'CVR College – Centre of Excellence',
+    program: 'Deep Learning, NLP & GenAI Bootcamp',
       duration: '120 hours',
-      students: '40+ students',
-      year: '2024-25'
-    },
-    {
-      institution: 'Multiple Engineering Colleges',
-      program: 'Technical Workshops',
-      colleges: 'RK College, SRK College, Lingayya\'s Institute, Sivani College',
-      focus: 'Java, Python, Data Science, Big Data'
-    }
-  ]
+    students: '40+ learners',
+    year: '2024 – 2025',
+  },
+  {
+    institution: 'Partner Engineering Colleges',
+    program: 'Technical Leadership Workshops',
+    duration: '2 – 3 day sprints',
+    students: 'RK, SRK, Lingayya’s, Sivani & more',
+    year: 'Ongoing',
+  },
+]
 
+const awards = [
+  {
+    title: '“Build Trust” Award',
+    organisation: 'Tekworks / Symphonize',
+    description: 'Honoured for exceptional client advocacy, delivery excellence and mentorship impact.',
+  },
+  {
+    title: 'Star of the Month',
+    organisation: 'Tekworks',
+    description: 'Recognised for orchestrating high-stakes launch readiness and academy success metrics.',
+  },
+]
+
+const certifications = [
+  { title: 'Machine Learning', issuer: 'Great Learning' },
+  { title: 'Python Data Science', issuer: 'NIIT (2017)' },
+  { title: 'Hadoop Tech-Mentor', issuer: 'NIIT (2016)' },
+  { title: 'Core Java', issuer: 'NIIT (2016)' },
+  { title: 'ChatGPT with Excel', issuer: 'Great Learning' },
+]
+
+const contactLinks = [
+  {
+    label: 'Call',
+    href: 'tel:+919052425905',
+    icon: Phone,
+    sublabel: '+91 9052425905',
+  },
+  {
+    label: 'Mail',
+    href: 'mailto:sa.nagulmeera@gmail.com',
+    icon: Mail,
+    sublabel: 'sa.nagulmeera@gmail.com',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/nagul-meera-shaik-085a8358',
+    icon: Linkedin,
+    sublabel: 'Stay connected',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Nagul-Tekworks',
+    icon: Github,
+    sublabel: 'Engineering playbook',
+  },
+]
+
+export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">Nagul Meera Shaik</h1>
-              <p className="text-lg text-slate-600 mt-1">Technical Lead & Learning Development Manager</p>
-            </div>
-            <div className="flex flex-wrap gap-4 mt-4 md:mt-0">
-              <a href="tel:+919052425905" className="flex items-center gap-2 text-slate-600 hover:text-slate-900">
-                <Phone className="w-4 h-4" />
-                <span className="text-sm">+91 9052425905</span>
-              </a>
-              <a href="mailto:sa.nagulmeera@gmail.com" className="flex items-center gap-2 text-slate-600 hover:text-slate-900">
-                <Mail className="w-4 h-4" />
-                <span className="text-sm">sa.nagulmeera@gmail.com</span>
-              </a>
-              <a href="http://www.linkedin.com/in/nagul-meera-shaik-085a8358" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 hover:text-slate-900">
-                <Linkedin className="w-4 h-4" />
-                <span className="text-sm">LinkedIn</span>
-              </a>
-              <a href="https://github.com/Nagul-Tekworks" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 hover:text-slate-900">
-                <Github className="w-4 h-4" />
-                <span className="text-sm">GitHub</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-[-10rem] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-sky-500/20 blur-[140px]" />
+        <div className="absolute right-[-12rem] top-1/3 h-[32rem] w-[32rem] rounded-full bg-purple-500/10 blur-[160px]" />
+        <div className="absolute left-[-12rem] bottom-[-10rem] h-[24rem] w-[24rem] rounded-full bg-indigo-500/10 blur-[140px]" />
+      </div>
 
-      {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Empowering Teams Through Technology & Training
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              12+ years of experience in Full-Stack Development, Team Leadership, and Technical Training
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 pb-20 pt-10 md:pt-16">
+        <header className="relative grid gap-10 rounded-3xl border border-slate-800/70 bg-slate-900/60 p-8 shadow-2xl backdrop-blur md:grid-cols-[minmax(0,1.6fr),minmax(0,1fr)]">
+          <div className="pointer-events-none absolute right-6 top-6 z-10 flex h-28 w-28 items-center justify-center rounded-full border border-slate-700/70 bg-slate-950/70 p-1 shadow-xl backdrop-blur">
+            <Image
+              src="/profile.png"
+              alt="Portrait of Nagul Meera Shaik"
+              width={108}
+              height={108}
+              className="h-full w-full rounded-full object-cover"
+              priority
+            />
+          </div>
+          <div className="max-w-2xl space-y-4 pt-16 md:pt-0">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-1 text-sm text-slate-300">
+              <Sparkles className="h-4 w-4 text-sky-400" />
+              Technical Lead · Learning & Development Strategist
+            </div>
+            <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              Nagul Meera Shaik
+            </h1>
+            <p className="text-lg text-slate-300">
+              I help organisations build high-performing engineering teams, ship resilient digital products and uplift talent
+              pipelines through deeply hands-on learning experiences.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold">2000+</div>
-                <div className="text-blue-200">Graduates Trained</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">12+</div>
-                <div className="text-blue-200">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">5+</div>
-                <div className="text-blue-200">College Workshops</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">Multiple</div>
-                <div className="text-blue-200">Awards Won</div>
-              </div>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild size="lg" className="bg-sky-500 hover:bg-sky-400">
+                <a href="mailto:sa.nagulmeera@gmail.com">
+                  Let&apos;s collaborate
+                  <ArrowUpRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-700 bg-transparent text-slate-100 hover:bg-slate-800">
+                <a href="#projects">View signature work</a>
+              </Button>
             </div>
           </div>
+          <div className="grid gap-4 self-start pt-16 md:pt-0">
+            {contactLinks.map((contact) => (
+              <a
+                key={contact.label}
+                href={contact.href}
+                className="group flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-3 transition hover:border-slate-600 hover:bg-slate-800"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800/80 text-slate-200 transition group-hover:bg-sky-500/20 group-hover:text-sky-300">
+                    <contact.icon className="h-5 w-5" />
         </div>
-      </section>
+                  <div>
+                    <p className="text-sm font-medium text-white">{contact.label}</p>
+                    <p className="text-xs text-slate-400">{contact.sublabel}</p>
+              </div>
+            </div>
+                <ArrowUpRight className="h-4 w-4 text-slate-500 transition group-hover:text-sky-300" />
+              </a>
+            ))}
+          </div>
+        </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-6 py-12">
-        <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 mb-8">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="projects">Projects</TabsTrigger>
-            <TabsTrigger value="training">Training</TabsTrigger>
-            <TabsTrigger value="achievements">Awards</TabsTrigger>
-          </TabsList>
-
-          {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5" />
-                  Professional Summary
-                </CardTitle>
+        <section className="grid gap-6 md:grid-cols-4" aria-label="Career metrics">
+          {stats.map((stat) => (
+            <Card key={stat.label} className="border-slate-800/80 bg-slate-900/70 shadow-xl">
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-sm font-semibold text-slate-400">{stat.label}</CardTitle>
+                <div className="text-3xl font-semibold text-white">{stat.value}</div>
+                <CardDescription className="text-sm text-slate-400">{stat.caption}</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-lg leading-relaxed text-slate-700">
-                  Results-driven Project Manager and Full Stack Developer with 12+ years of experience in software development, 
-                  team leadership, and technical training. Skilled in Java, Python, and Big Data, delivering scalable solutions 
-                  and mentoring teams to achieve business goals efficiently. Passionate about solving real-world problems and equipping developers through innovative learning paths.
-                </p>
-              </CardContent>
             </Card>
+          ))}
+        </section>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="w-5 h-5" />
-                    Leadership & Training
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-  <div className="flex items-center gap-2">
-    <Badge variant="secondary">Technical Leadership</Badge>
-    <span className="text-sm text-slate-600">
-      Led Full-Stack, QA, BA & Mentorship Teams
-    </span>
-  </div>
-  <div className="flex items-center gap-2">
-    <Badge variant="secondary">Product Development</Badge>
-    <span className="text-sm text-slate-600">
-      Managed End-to-End Software Development Lifecycle
-    </span>
-  </div>
-  <div className="flex items-center gap-2">
-    <Badge variant="secondary">Training & Mentorship</Badge>
-    <span className="text-sm text-slate-600">
-      2000+ Learners | 250+ Sessions | Train-the-Trainer Programs
-    </span>
-  </div>
-  <div className="flex items-center gap-2">
-    <Badge variant="secondary">Workshops & Events</Badge>
-    <span className="text-sm text-slate-600">
-      Corporate Workshops, College Bootcamps & Hackathons
-    </span>
-  </div>
-</CardContent>
-
-
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Code className="w-5 h-5" />
-                    Technical Expertise
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Full-Stack Java</Badge>
-                    <span className="text-sm text-slate-600">Core Java, Spring, Spring Boot, REST API, Spring security, Micro Services, React, PostgreSQL, Supabase</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Data Science</Badge>
-                    <span className="text-sm text-slate-600">Python, Data Analysis, ML, NLP, GenAI</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Big Data</Badge>
-                    <span className="text-sm text-slate-600">Hadoop, Spark, Hive</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Mobile Development</Badge>
-                    <span className="text-sm text-slate-600">React Native</span>
-                  </div>
-                </CardContent>
-              </Card>
+        <section className="grid gap-8 lg:grid-cols-3" aria-label="Value proposition">
+          {differentiators.map((item) => (
+            <div key={item.title} className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-500 via-purple-500 to-sky-500" />
+              <item.icon className="mb-4 h-8 w-8 text-sky-300" />
+              <h2 className="text-xl font-semibold text-white">{item.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{item.description}</p>
             </div>
-          </TabsContent>
+          ))}
+        </section>
 
-          {/* Skills Tab */}
-          <TabsContent value="skills" className="space-y-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Java Full Stack</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.java.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
-                    ))}
+        <section id="capabilities" className="space-y-8" aria-label="Capabilities">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-semibold text-white">Core Capability Matrix</h2>
+              <p className="text-sm text-slate-400">
+                Engineering rigour meets talent amplification across the stack and delivery lifecycle.
+              </p>
                   </div>
+            <Badge className="w-fit border border-sky-500/40 bg-sky-500/15 text-sky-200">Hands-on leadership</Badge>
+                  </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {capabilityMatrix.map((capability) => (
+              <Card key={capability.title} className="h-full border-slate-800/70 bg-slate-900/70 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl text-white">{capability.title}</CardTitle>
+                  <CardDescription className="text-slate-400">{capability.focus}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-2">
+                  {capability.items.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="border border-slate-700 bg-slate-800/80 text-slate-200">
+                      {skill}
+                    </Badge>
+                  ))}
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Python & Data Science</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.python.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
+        </section>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Frontend Technologies</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.frontend.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Big Data Technologies</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.bigdata.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Databases</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.databases.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Development Tools</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.tools.map((skill) => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+        <section id="projects" className="space-y-10" aria-label="Signature work">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-semibold text-white">Signature Delivery</h2>
+              <p className="text-sm text-slate-400">
+                Product, platform and data outcomes delivered with measurable business uplift.
+              </p>
             </div>
-          </TabsContent>
-
-          {/* Experience Tab */}
-          <TabsContent value="experience" className="space-y-6">
-            {experience.map((exp, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <Badge className="w-fit border border-purple-500/40 bg-purple-600/20 text-purple-100">Impact-first</Badge>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-2xl transition hover:-translate-y-1 hover:border-sky-500/40 hover:shadow-sky-900/40"
+              >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-purple-500/10" />
+                </div>
+                <div className="relative flex flex-col gap-5">
+                  <div className="flex items-start justify-between gap-4">
                     <div>
-                      <CardTitle className="text-xl">{exp.company}</CardTitle>
-                      <CardDescription className="text-lg font-medium text-slate-700 mt-1">
-                        {exp.role}
-                      </CardDescription>
+                      <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                      <p className="mt-1 text-sm text-slate-400">{project.role}</p>
                     </div>
-                    <div className="flex items-center gap-2 mt-2 md:mt-0">
-                      <Calendar className="w-4 h-4 text-slate-500" />
-                      <span className="text-sm text-slate-600">{exp.period}</span>
-                    </div>
+                    <Badge className="border border-slate-700 bg-slate-800/80 text-slate-200">{project.tech}</Badge>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {exp.achievements.map((achievement, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-slate-700">{achievement}</span>
+                  <p className="text-sm leading-6 text-slate-300">{project.description}</p>
+                  <ul className="space-y-2 text-sm text-slate-200">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight} className="flex items-start gap-2">
+                        <div className="mt-[6px] h-2 w-2 flex-shrink-0 rounded-full bg-sky-400" />
+                        <span>{highlight}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
-
-          {/* Projects Tab */}
-          <TabsContent value="projects" className="space-y-6">
-            {projects.map((project) => (
-              <Card key={project.id}>
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="text-xl flex items-center gap-2">
-                        {project.title}
                         {project.url && (
-                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        )}
-                      </CardTitle>
-                      <CardDescription className="mt-1">
-                        <Badge variant="outline" className="mr-2">{project.role}</Badge>
-                        <span className="text-sm text-slate-600">{project.tech}</span>
-                      </CardDescription>
-                    </div>
                     <Button
+                      asChild
                       variant="ghost"
-                      size="sm"
-                      onClick={() => toggleProject(project.id)}
-                      className="mt-2 md:mt-0"
+                      className="w-fit rounded-full border border-transparent bg-slate-800/60 text-slate-200 transition hover:border-sky-500/50 hover:bg-slate-800/80 hover:text-sky-200"
                     >
-                      {expandedProject === project.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      <a href={project.url} target="_blank" rel="noopener noreferrer">
+                        Explore case study
+                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </a>
                     </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-700 mb-4">{project.description}</p>
-                  {expandedProject === project.id && (
-                    <div className="border-t pt-4">
-                      <h4 className="font-semibold mb-2">Key Highlights:</h4>
-                      <ul className="space-y-1">
-                        {project.highlights.map((highlight, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-slate-700">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
-
-          {/* Training Tab */}
-          <TabsContent value="training" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5" />
-                  Training Programs & Workshops
-                </CardTitle>
-                <CardDescription>
-                  Comprehensive training programs delivered across multiple institutions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {trainingPrograms.map((program, index) => (
-                    <div key={index} className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-lg mb-2">{program.institution}</h4>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="secondary">{program.program}</Badge>
-                        </div>
-                        {program.duration && (
-                          <p className="text-sm text-slate-600">Duration: {program.duration}</p>
-                        )}
-                        {program.students && (
-                          <p className="text-sm text-slate-600">Students: {program.students}</p>
-                        )}
-                        {program.year && (
-                          <p className="text-sm text-slate-600">Year: {program.year}</p>
-                        )}
-                        {program.colleges && (
-                          <p className="text-sm text-slate-600">Colleges: {program.colleges}</p>
-                        )}
-                        {program.focus && (
-                          <p className="text-sm text-slate-600">Focus Areas: {program.focus}</p>
                         )}
                       </div>
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+        </section>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Training Specializations</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
+        <section id="experience" className="space-y-10" aria-label="Experience timeline">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                   <div>
-                    <h4 className="font-semibold mb-3">Technical Training Areas</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Java Full Stack Development</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Python & Machine Learning</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Deep Learning & NLP</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Big Data Technologies</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Generative AI</span>
-                      </li>
-                    </ul>
+              <h2 className="text-3xl font-semibold text-white">Experience Timeline</h2>
+              <p className="text-sm text-slate-400">Leadership across delivery, curriculum design and talent transformation.</p>
                   </div>
-                  <div>
-                    <h4 className="font-semibold mb-3">Training Methodologies</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Hands-on Project-based Learning</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Industry-oriented Curriculum</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Blended Learning Models</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Train the Trainer Programs</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Technical Workshops & Bootcamps</span>
-                      </li>
-                    </ul>
+            <Badge className="w-fit border border-indigo-500/40 bg-indigo-600/20 text-indigo-100">Trusted partner</Badge>
                   </div>
+          <div className="relative grid gap-10">
+            <div className="absolute left-4 top-1 bottom-4 w-px bg-slate-800 md:left-1/2 md:-translate-x-1/2" />
+            {experience.map((role, index) => (
+              <div
+                key={role.company}
+                className={`relative flex flex-col gap-4 rounded-3xl border border-slate-800/70 bg-slate-900/70 p-8 shadow-xl md:w-[calc(50%-2rem)] ${
+                  index % 2 === 0 ? 'md:ml-auto md:translate-y-6' : 'md:mr-auto md:-translate-y-6'
+                }`}
+              >
+                <div className="absolute left-4 top-6 h-3 w-3 rounded-full border border-sky-400 bg-slate-900 md:left-auto md:right-[-1.65rem] md:top-1/2 md:-translate-y-1/2" />
+                <div className="space-y-1">
+                  <h3 className="text-2xl font-semibold text-white">{role.company}</h3>
+                  <p className="text-sm font-medium text-slate-300">{role.role}</p>
+                  <p className="text-xs uppercase tracking-wider text-slate-500">{role.period}</p>
                 </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Achievements Tab */}
-          <TabsContent value="achievements" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-yellow-600" />
-                    Awards & Recognition
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="border-l-4 border-yellow-500 pl-4">
-                    <h4 className="font-semibold text-lg">"Build Trust" Award</h4>
-                    <p className="text-slate-600">Tekworks / Symphonize</p>
-                    <p className="text-sm text-slate-500 mt-1">
-                      Recognized for exemplifying company values in client delivery and mentoring
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-blue-500 pl-4">
-                    <h4 className="font-semibold text-lg">Star of the Month</h4>
-                    <p className="text-slate-600">Tekworks</p>
-                    <p className="text-sm text-slate-500 mt-1">
-                      Awarded for consistent performance in project execution and training contributions
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <GraduationCap className="w-5 h-5 text-blue-600" />
-                    Certifications
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">Machine Learning</Badge>
-                    <span className="text-sm text-slate-600">Great Learning</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">Python Data Science</Badge>
-                    <span className="text-sm text-slate-600">NIIT (2017)</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">Hadoop Tech-Mentor</Badge>
-                    <span className="text-sm text-slate-600">NIIT (2016)</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">Core Java</Badge>
-                    <span className="text-sm text-slate-600">NIIT (2016)</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">ChatGPT with Excel</Badge>
-                    <span className="text-sm text-slate-600">Great Learning</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Star className="w-5 h-5 text-purple-600" />
-                  Key Achievements
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold mb-3">Training Impact</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span>Trained 1,000+ graduates in technical skills</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span>Mentored 1,500+ learners in career transitions</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span>Conducted workshops at 5+ engineering colleges</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span>Designed industry-oriented curriculum</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-3">Technical Leadership</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Led development of bitLabs platform</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Published mobile apps on Play Store & App Store</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Managed cross-functional development teams</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>Conducted technical interviews & hiring</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Nagul Meera Shaik</h3>
-              <p className="text-slate-300">Technical Lead & Learning Development Manager</p>
-              <div className="flex items-center gap-2 mt-2">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm text-slate-300">Guntur, Andhra Pradesh, India</span>
+                <ul className="space-y-2 text-sm text-slate-200">
+                  {role.achievements.map((achievement) => (
+                    <li key={achievement} className="flex items-start gap-3">
+                      <TrendingUp className="mt-[2px] h-4 w-4 flex-shrink-0 text-sky-300" />
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <p className="text-slate-300 text-sm">
-                "Setting high standards and delivering quality outcomes through continuous learning and mentoring"
-              </p>
-            </div>
+            ))}
           </div>
-          <div className="border-t border-slate-700 mt-6 pt-6 text-center">
-            <p className="text-slate-400 text-sm">
-              © 2025 Nagul Meera Shaik. All rights reserved.
+        </section>
+
+        <section id="training" className="space-y-10" aria-label="Training programs">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-semibold text-white">Training & Talent Uplift</h2>
+              <p className="text-sm text-slate-400">Designing future-ready engineers through immersive, outcome-led journeys.</p>
+            </div>
+            <Badge className="w-fit border border-sky-500/40 bg-sky-500/15 text-sky-200">Academy architect</Badge>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {trainingPrograms.map((program) => (
+              <Card key={program.program} className="border-slate-800/70 bg-slate-900/70 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl text-white">{program.program}</CardTitle>
+                  <CardDescription className="text-slate-400">{program.institution}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2 text-sm text-slate-300">
+                  <p className="flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-sky-300" /> {program.duration}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-sky-300" /> {program.students}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <GraduationCap className="h-4 w-4 text-sky-300" /> {program.year}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="recognition" className="grid gap-6 lg:grid-cols-2" aria-label="Recognition">
+          <Card className="h-full border-slate-800/70 bg-slate-900/70 shadow-xl">
+            <CardHeader className="space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-1 text-sm text-yellow-100">
+                <Award className="h-4 w-4" /> Recognition
+              </div>
+              <CardTitle className="text-2xl text-white">Awards & Highlights</CardTitle>
+              <CardDescription className="text-slate-400">
+                Celebrated for building trust, accelerating delivery and elevating learning culture.
+              </CardDescription>
+                </CardHeader>
+            <CardContent className="space-y-4 text-sm text-slate-200">
+              {awards.map((award) => (
+                <div key={award.title} className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+                  <h3 className="text-lg font-semibold text-white">{award.title}</h3>
+                  <p className="text-xs uppercase tracking-wide text-slate-500">{award.organisation}</p>
+                  <p className="mt-2 text-slate-300">{award.description}</p>
+                  </div>
+              ))}
+                </CardContent>
+              </Card>
+
+          <Card className="h-full border-slate-800/70 bg-slate-900/70 shadow-xl">
+            <CardHeader className="space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/40 bg-sky-500/15 px-4 py-1 text-sm text-sky-200">
+                <ShieldCheck className="h-4 w-4" /> Credentials
+              </div>
+              <CardTitle className="text-2xl text-white">Certifications</CardTitle>
+              <CardDescription className="text-slate-400">
+                Continuous learning as a catalyst for better product decisions and stronger teams.
+              </CardDescription>
+              </CardHeader>
+            <CardContent className="space-y-3 text-sm text-slate-200">
+              {certifications.map((cert) => (
+                <div key={cert.title} className="flex items-center justify-between rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                  <div>
+                    <p className="text-base font-semibold text-white">{cert.title}</p>
+                    <p className="text-xs uppercase tracking-wide text-slate-500">{cert.issuer}</p>
+                  </div>
+                  <GraduationCap className="h-5 w-5 text-sky-300" />
+                </div>
+              ))}
+              </CardContent>
+            </Card>
+        </section>
+      </div>
+
+      <footer className="border-t border-slate-800/70 bg-slate-950/90 py-10">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-white">Nagul Meera Shaik</p>
+            <p className="text-slate-400">Technical Lead · Learning & Development Strategist</p>
+            <p className="flex items-center gap-2 text-slate-500">
+              <MapPin className="h-4 w-4" /> Guntur · Andhra Pradesh · India
             </p>
           </div>
+          <div className="text-slate-500">
+            “Setting bold standards, mentoring with empathy, delivering with precision.”
+          </div>
+          <div className="text-slate-600">© {new Date().getFullYear()} Nagul Meera Shaik. All rights reserved.</div>
         </div>
       </footer>
     </div>
